@@ -1,7 +1,18 @@
 from django.shortcuts import render
-from .models import Comment,error
+from .models import Comment,Error
 
 # Create your views here.
+def index(request):
+
+    return render (request, 'index.html')
+
+
+
+
+
+
+
+
 def error(request):
     # current_user = request.user.id
     # user_instance =User.objects.get(id=request.user.id)
