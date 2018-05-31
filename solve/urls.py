@@ -5,6 +5,6 @@ from django.conf import settings
 
 urlpatterns=[
     url(r'^$',views.index,name='index'),
-    # url(r'^$',views.welcome,name='welcome'),
+    url(r'^error',views.error,name='error'),
 
 ]

@@ -1,17 +1,10 @@
 from django.shortcuts import render
 from .models import Comment,Error
-
+from .forms import ErrorForm
 # Create your views here.
 def index(request):
 
     return render (request, 'index.html')
-
-
-
-
-
-
-
 
 def error(request):
     # current_user = request.user.id
