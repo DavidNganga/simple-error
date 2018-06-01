@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Comment,Error
 from .forms import ErrorForm
 # Create your views here.
@@ -16,7 +16,20 @@ def error(request):
             # error.profile__user = current_user
             # error.user=user_instance
             error.save()
-            return redirect('welcome')
+            return redirect('index')
     else:
         form = ErrorForm()
     return render(request, 'error.html', {"form": form})
+
+def search(request):
+
+    if 'name' in request.GET and request.GET["name"]:
+        search_term = request.GET.get("name")
+
+        errors = Error.search(search_term)
+        message = f"{search_term}"
+        print(errors)
+        return render(request, 'search.html',{"message":message,"errors": errors})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})

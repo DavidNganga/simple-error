@@ -12,19 +12,13 @@
 
 
 
-      <a class="navbar-brand" href="{% url 'index' %}">Instagram</a>
-
+      <a class="navbar-brand" href="{% url 'index' %}">language</a>
     </div>
-
     <div class=" navbar-expand-lg ">
-
   </div>
-
     <!-- Adding a search form  -->
     <div class="col-sm-8 col-md-8 navbar-right">
-
-      <form class="navbar-form" role="search" action="">
-
+      <form class="navbar-form" role="search" action="{% url 'search' %}">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search" name="name">
           <div class="input-group-btn">
@@ -46,6 +40,7 @@
                 <ul class="dropdown-menu" role="menu">
                   <li>
                     <a href="{%url 'index'%}">Home</a>
-
+                  </nav>
+                  </div>
 </body>
 </html>
