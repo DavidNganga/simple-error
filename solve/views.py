@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Comment,Error
-from .forms import ErrorForm
+from .forms import ErrorForm, CommentForm
 # Create your views here.
 def index(request):
 
@@ -33,3 +33,27 @@ def search(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+
+def comment(request, error_id):
+    current_error = Error.objects.get(id=error_id)
+    # current_user = request.user
+    if request.method == 'POST':
+
+        # image=get_object_or_404(Images,id=id)
+        if request.method=='POST':
+            current_user=request.user
+            form = CommentForm(request.POST, request.FILES)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                # comment.user = current_user
+                comment.error = current_error
+                comment.save()
+            return redirect('/')
+    else:
+            form = CommentForm()
+    return render(request, 'comment.html', {"form": form, "current_error":current_error,"id":error_id})
+
+
+def viewdetails(request, error_id):
+    errors = Error.objects.get(id = error_id)
+    return render (request, 'viewdetails.html',{"errors":errors, id:error_id})

@@ -30,5 +30,21 @@ class Error(models.Model):
          return names
 
 class Comment(models.Model):
-    error = models.ForeignKey(Error, on_delete=models.CASCADE,null=True)
     post = models.TextField(max_length=200,null=True)
+    error = models.ForeignKey(Error, on_delete=models.CASCADE,null=True)
+
+
+    def __str__(self):
+        return self.post
+
+    def save_comment(self):
+        self.save()
+
+    @classmethod
+    def get_all(cls):
+        opinions = cls.objects.all()
+        return opinions
+
+    def get_Comment_by_id(cls,id):
+        views = cls.objecs.get(id=id)
+        return views

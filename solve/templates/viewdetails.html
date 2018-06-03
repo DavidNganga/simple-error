@@ -1,0 +1,18 @@
+{%extends 'base.html' %}
+{% load bootstrap3 %}
+{% load static%}
+{% block content %}
+
+
+{{errors.name}}
+{{errors.error}}
+{{errors.explanation}}
+
+<a href="{% url 'comment' error.id %}"> Comment..</a>
+
+
+
+
+
+
+{% endblock %}
